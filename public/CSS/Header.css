@@ -1,0 +1,242 @@
+header {
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.12), inset 0 -1px 0 0 #dadce0;
+  height: 3.75rem;
+}
+
+#navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 min(1.6rem);
+  align-items: center;
+  height: 3.75rem;
+  position: fixed;
+  width: 100%;
+  background-color: #f6f8fc;
+}
+
+#navbar span a svg {
+  color: #5f6368;
+  opacity: 1;
+}
+
+.logo-brand {
+  width: 100%;
+  height: 100%;
+  margin-right: 0.4rem;
+}
+
+.logo span {
+  font-size: 1rem;
+  line-height: 28px;
+  padding: 0 0.25rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo > *:not(:first-child) {
+  margin-left: 1rem;
+}
+
+.mode {
+  flex: 0.15;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: black;
+}
+
+.mode > span:first-child,
+span:nth-child(2) {
+  padding: 0.3rem;
+  line-height: 0.75rem;
+}
+
+.mode > a {
+  cursor: pointer;
+}
+
+.mode > span:nth-child(3) {
+  width: 0.75rem;
+}
+
+.mode > *:hover {
+  background-color: rgba(60, 64, 67, 0.1);
+  border-radius: 50px;
+}
+
+.mode span:last-child img {
+  border-radius: 50%;
+}
+
+.search {
+  flex: 0.7;
+}
+
+.search input {
+  width: 45rem;
+  height: 3rem;
+  border-radius: 50px;
+  padding: 0 2.5rem;
+  position: relative;
+  border: none;
+  outline: none;
+  background: #eaf1fb;
+}
+
+.searchBtn {
+  position: absolute;
+  z-index: 1;
+  transform: translate(-7px, 5px);
+  outline: none;
+  background: transparent;
+  border: none;
+}
+
+.filter {
+  position: absolute;
+  z-index: 1;
+  transform: translate(-58px, 5px);
+  outline: none;
+  background: transparent;
+  border: none;
+}
+
+.dropbtn {
+  position: relative;
+}
+
+.dropdown-content {
+  padding: 1.5rem 0.5rem;
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: #f6f8fc;
+  min-width: 10rem;
+  height: fit-content;
+  z-index: 1;
+  width: 436px;
+  min-height: 210px;
+  max-height: calc(-61px + 100dvh);
+  max-width: calc(-8px + 100vw);
+  margin-right: 4px;
+  margin-top: 57px;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 3px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.dropdown-content.active {
+  display: block;
+}
+
+.dropdown-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.dropdown-head .dropdown-logo {
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 50%;
+  margin: 0.4rem 0;
+}
+
+.dropdown-head span {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 17px;
+}
+
+.dropdown-head a {
+  margin-top: 0.5rem;
+  position: relative;
+  background: none;
+  border-radius: 100px;
+  border: 1px solid #747775;
+  display: inline-block;
+  outline: 0;
+  padding: 9px 23px 9px 23px;
+  text-align: center;
+  color: #2962ff;
+}
+
+.dropdown-head a:hover {
+  background: rgba(11, 87, 208, 0.12);
+}
+
+.dropdown-body {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+  justify-content: space-evenly;
+  padding: 0 2rem;
+}
+
+.dropdown-body > * {
+  width: 11rem;
+  background: red;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dropdown-body button {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  line-height: 1rem;
+}
+
+.dropdown-body > * i {
+  transform: translateX(-0.8rem);
+}
+
+.dropdown-body > div:first-child {
+  border-radius: 30px 0px 0px 30px;
+}
+
+.dropdown-body > div:last-child {
+  border-radius: 0px 30px 30px 0px;
+}
+
+/*.dropdown-body  >  div:first-child i {*/
+/*    color: #2962ff;*/
+/*}*/
+
+.dropdown-bottom {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-around;
+  font-size: 13px;
+  padding: 0 2.5rem;
+  font-weight: 400;
+}
+
+.dropdown-email {
+  position: relative;
+}
+
+.close-dropdown {
+  position: absolute;
+  right: 2rem;
+}
+
+.logoutBtn {
+  color: #ffc107;
+  background-image: none;
+  border-color: #ffc107;
+  padding: 5px 10px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background-color: #ffc107;
+  border-radius: 10px;
+  color: #212529;
+}

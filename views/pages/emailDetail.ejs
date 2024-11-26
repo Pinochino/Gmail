@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/Head') %>
+    <link rel="stylesheet" href="/CSS/InboxPage.css" />
+</head>
+
+<body>
+  <header><%- include('../partials/Header') %></header>
+
+  <div class="container" id="emailDetail">
+    <%- include('../partials/Sidebar') %>
+      <% if (data) { %>
+        <div class="content">
+          <h1 class="heading">
+            Subject: <%= data.SUBJECT%>
+          </h1>
+
+          <p class="detail-body">
+            Message: <%= data.MESSAGE %>
+          </p>
+
+          <% if(data.FILE) { %>
+            <button onclick="downloadFile()">Download file</button>
+            <% } %>
+
+        </div>
+        <% }%>
+  </div>
+
+  <script>
+    function downloadFile() {
+      const emailId = "<%= data.ID %>";
+      window.location.href = `/email-detail/download/${emailId}`;
+    }
+  </script>
+</body>
+
+</html>

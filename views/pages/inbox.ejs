@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/Head') %>
+  <link rel="stylesheet" href="/CSS/InboxPage.css" />
+</head>
+<style>
+  .notification {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    text-align: center;
+    text-align: center;
+
+  }
+
+  #notification-message {
+    color: black;
+    text-align: center;
+  }
+</style>
+
+<body>
+  <header><%- include('../partials/Header') %></header>
+  <div class="notification" id="notification" style="display:none;">
+    <p id="notification-message">Email delete successfully</p>
+  </div>
+
+  <div class="container">
+    <%- include('../partials/Sidebar') %>
+    <div class="content">
+      <form class="container-form" method="post" action="/inbox">
+        <div class="inbox-head">
+          <div class="form-check">
+            <input type="checkbox" name="allCheckbox" class="form-check-input" id="checkbox-all" />
+            <label class="form-check-label" for="checkbox-all">Chọn tất cả</label>
+          </div>
+
+          <button class="btn check-all-submit-btn" id="deleteBtn" disabled>Delete</button>
+        </div>
+
+        <% if (data.length> 0) { %>
+        <% data.forEach(email=> { %>
+        <div class="email-item">
+          <a href="/email-detail/<%= email.ID %>">
+            <input type="checkbox" name="emailIds[]" class="email_<%= email.ID %>" value="<%= email.ID %>" />
+            <span>
+              <%= email.SENDER_NAME %>
+            </span>
+            <span>
+              <%= email.SUBJECT %>
+            </span>
+            <span>
+              <%= email.RECEIVED_AT %>
+            </span>
+          </a>
+        </div>
+        <% }) %>
+
+        <div class="pagination">
+          <% if (page> 1) { %>
+          <a href="/inbox?page=<%= page - 1 %>">Before</a>
+          <% } %>
+          <% for (let i=iterator; i <=endingLink; i++) { %>
+          <% if (i===page) { %>
+          <a href="/inbox?page=<%= i %>" class="selectedLink">
+            <%= i %>
+          </a>
+          <% } else { %>
+          <a href="/inbox?page=<%= i %>">
+            <%= i %>
+          </a>
+          <% } %>
+          <% } %>
+          <% if (page < numberOfPages) { %>
+          <a href="/inbox?page=<%= page + 1 %>">After</a>
+          <% } %>
+        </div>
+        <% } else { %>
+        <p>No emails available.</p>
+        <% } %>
+    </div>
+  </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const checkboxAll = document.querySelector("#checkbox-all");
+      const emailItemCheckbox = document.querySelectorAll('input[name="emailIds[]"]');
+      const checkAllSubmitBtn = document.querySelector('.check-all-submit-btn');
+      const deleteBtn = document.getElementById('deleteBtn');
+
+      deleteBtn.addEventListener('click', async (event) => {
+        event.preventDefault();
+
+        const emailIds = [...document.querySelectorAll('input[name="emailIds[]"]:checked')].map(input => input.value);
+
+        if (emailIds.length === 0) {
+          showNotification("Vui lòng chọn ít nhất một email để xóa.");
+          return;
+        }
+
+        try {
+          const response = await fetch('/inbox', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              emailIds
+            })
+          });
+
+          const result = await response.json();
+
+          if (response.ok) {
+            showNotification(result.message || 'Emails deleted successfully');
+            emailIds.forEach(id => {
+              const emailItem = document.querySelector(`.email_${id}`);
+              if (emailItem) emailItem.closest('.email-item').remove();
+              location.reload();
+            });
+          } else {
+            showNotification(result.message || 'Failed to delete emails');
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          showNotification('An error occurred while deleting emails');
+        }
+      });
+
+      function showNotification(message) {
+        const notification = document.getElementById('notification');
+        const notificationMessage = document.getElementById('notification-message');
+
+        notificationMessage.textContent = message;
+        notification.style.display = 'block';
+
+
+        setTimeout(() => {
+          notification.style.display = 'none';
+        }, 3000);
+      }
+
+
+      checkboxAll.onchange = function() {
+        const isCheckedAll = checkboxAll.checked;
+        emailItemCheckbox.forEach((item) => {
+          item.checked = isCheckedAll;
+        });
+        renderCheckAllSubmitBtn();
+      };
+
+      emailItemCheckbox.forEach((item) => {
+        item.onchange = () => {
+          checkboxAll.checked = emailItemCheckbox.length === document.querySelectorAll('input[name="emailIds[]"]:checked').length;
+          renderCheckAllSubmitBtn();
+        };
+      });
+
+      function renderCheckAllSubmitBtn() {
+        checkAllSubmitBtn.disabled = document.querySelectorAll('input[name="emailIds[]"]:checked').length === 0;
+      }
+
+      deleteBtn.addEventListener('click', (event) => {
+        event.preventDefault(); // Ngăn không tải lại trang khi ấn nút xóa
+
+        const emailIds = [...document.querySelectorAll('input[name="emailIds[]"]:checked')].map(input => input.value);
+
+        if (emailIds.length === 0) {
+          alert("Vui lòng chọn ít nhất một email để xóa.");
+          return;
+        }
+
+
+      });
+    });
+  </script>
+</body>
+
+</html>

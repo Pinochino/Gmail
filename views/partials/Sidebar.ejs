@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/CSS/Sidebar.css">
+
+</head>
+
+<body>
+  <aside id="sidebar">
+    <span class="write-email">
+      <i class="fa-solid fa-pen"></i>
+      <a href="/compose">Compose</a>
+
+    </span>
+    <div class="samples">
+      <span class="tab-item">
+
+        <img src="https://ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/inbox_fill_baseline_p900_20dp.png" alt="icon" />
+        <div class="quantity tab-pane">
+          <a href="/inbox">Inbox Page</a>
+
+        </div>
+      </span>
+      <span class="tab-item">
+        <img src="https://ssl.gstatic.com/ui/v1/icons/mail/gm3/1x/send_baseline_nv700_20dp.png" alt="icon" />
+        <div class="quantity tab-pane">
+          <a href="/outbox">Outbox Page</a>
+
+        </div>
+      </span>
+
+    </div>
+  </aside>
+
+  <script>
+    const $$ = document.querySelectorAll.bind(document)
+    const tabs = $$('.tab-item');
+    const panes = $$('.tab-pane');
+    tabs.forEach((tab, index) => {
+      tab.onclick = function() {
+        // Remove active class from all tabs and panes
+        tabs.forEach(tab => tab.classList.remove('posible'));
+        panes.forEach(pane => pane.classList.remove('active'));
+
+        // Add active class to the clicked tab and corresponding pane
+        this.classList.add('posible');
+        panes[index].classList.add('active');
+      }
+    });
+  </script>
+</body>
+
+</html>

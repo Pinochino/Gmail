@@ -1,0 +1,174 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+/* PAGINATION */
+.center {
+  text-align: center;
+}
+
+.pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+  border: 1px solid #ddd;
+  margin: 0 4px;
+}
+
+.pagination a.active {
+  background-color: #4caf50;
+  color: white;
+  border: 1px solid #4caf50;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+}
+
+.inbox-head {
+  display: flex;
+  align-items: center;
+}
+
+.inbox-head > *:not(:first-child) {
+  margin: 0 1rem;
+}
+
+.pagination {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Form styling */
+.container-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.container-form label {
+  font-weight: bold;
+  color: #333;
+}
+
+.container-form input[type="text"],
+.container-form textarea,
+.container-form select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.container-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.container-form input[type="file"] {
+  padding: 8px;
+}
+
+.container-form button {
+  align-self: flex-start;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.container-form button:hover {
+  background-color: #45a049;
+}
+.recipient > * {
+  margin: 0.5rem 0;
+}
+.recipient-group > *:not(:first-child) {
+  margin: 0.5rem 0;
+}
+
+.subject > * {
+  margin: 0.5rem 0;
+}
+
+.message > * {
+  margin: 0.5rem 0;
+}
+
+#myFile::file-selector-button {
+  font-weight: bold;
+  color: dodgerblue;
+  padding: 0.3em;
+  border: thin solid grey;
+  border-radius: 3px;
+}
+
+/* Content styling */
+.content {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+.heading {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.detail-body {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+/* Button styling */
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #1a73e8;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #1669c4;
+}
+
+#emailDetail .content{
+  position: fixed;
+  top: 6rem;
+  left: 10rem;
+}

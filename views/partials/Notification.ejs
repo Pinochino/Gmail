@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    .notification {
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: opacity 0.5s ease;
+    }
+
+    .notification.success {
+      background-color: #4CAF50;
+    }
+
+    .notification.failure {
+      background-color: #f44336;
+    }
+
+    .closebtn {
+      font-weight: bold;
+      font-size: 22px;
+      cursor: pointer;
+      margin-left: 15px;
+      transition: color 0.3s;
+    }
+
+    .closebtn:hover {
+      color: black;
+    }
+  </style>
+</head>
+
+<body>
+
+  <% if (typeof notification !=='undefined' ) { %>
+  <div class="notification <%= type %>">
+    <strong>
+      <%= message %>
+    </strong>
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+  </div>
+  <% } %>
+
+
+
+
+</body>
+
+</html>
